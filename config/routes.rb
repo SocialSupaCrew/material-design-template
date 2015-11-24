@@ -1,4 +1,15 @@
 Rails.application.routes.draw do
+
+  get 'home/index'
+
+  match '*any' => 'application#options', :via => [:options]
+
+  resources :user_mails, only: [:create, :destroy]
+  get 'user_mails/show' => 'user_mails#show'
+  put 'user_mails' => 'user_mails#update'
+
+  root 'home#index'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
